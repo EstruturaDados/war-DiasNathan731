@@ -96,3 +96,65 @@ int main() {
 
 // limparBufferEntrada():
 // Função utilitária para limpar o buffer de entrada do teclado (stdin), evitando problemas com leituras consecutivas de scanf e getchar.
+
+#include <stdio.h>
+#include <string.h>
+
+// --- Definicao da struct Territorio ---
+struct Territorio {
+    char nome[30];
+    char cor[10];
+    int tropas;
+};
+
+// --- Funcao para limpar o buffer de entrada
+void limparBufferEntrada() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+int main() {
+    // Declaracao de um vetor para armazenar 5 territorios
+    struct Territorio territorios[5];
+
+    // Mensagem inicial para o usuario
+    printf("===============================================================\n");
+    printf("--- Vamos cadastrar os 5 territorios iniciais do nosso mundo.\n");
+    printf("--- Cadastrando Territorio 1 ---\n\n");
+
+    // Laco para entrada dos 5 territorios
+    for (int i = 0; i < 5; i++) {
+        printf("Territorio %d\n", i + 1);
+
+        // Le o nome (aceita espacos)
+        printf("Nome: ");
+        scanf(" %29[^\n]", territorios[i].nome);
+        limparBufferEntrada();
+
+        // Le a cor do exercito
+        printf("Cor do exercito: ");
+        scanf(" %9[^\n]", territorios[i].cor);
+        limparBufferEntrada();
+
+        // Le a quantidade de tropas
+        printf("Numero de tropas: ");
+        scanf("%d", &territorios[i].tropas);
+        limparBufferEntrada();
+
+        printf("===== Territorio cadastrado com sucesso! =====\n\n");
+    }
+
+    // Exibicao dos dados de todos os territorios cadastrados
+    printf("\n=== Lista de Territorios Cadastrados ===\n");
+    printf("\n============================================");
+    printf("\n        MAPA DO MUNDO - ESTADO ATUAL        ");
+    printf("\n============================================\n\n");
+    for (int i = 0; i < 5; i++) {
+        printf("TERRITORIO %d:\n", i + 1);
+        printf(" - Nome: %s\n", territorios[i].nome);
+        printf(" - Cor: %s\n", territorios[i].cor);
+        printf(" - Tropas: %d\n\n", territorios[i].tropas);
+    }
+
+    return 0;
+}
